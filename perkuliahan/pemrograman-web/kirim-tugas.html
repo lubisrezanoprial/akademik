@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kirim Tugas - Pemrograman Web</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .header-hidden {
+            transform: translateY(-100%);
+        }
+        
+        .header-visible {
+            transform: translateY(0);
+        }
+        
+        #mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        #mobile-menu.active {
+            max-height: 500px;
+        }
+
+        .file-upload-area {
+            border: 2px dashed #cbd5e0;
+            transition: all 0.3s ease;
+        }
+
+        .file-upload-area.drag-over {
+            border-color: #3b82f6;
+            background-color: #eff6ff;
+        }
+
+        .file-upload-area:hover {
+            border-color: #3b82f6;
+        }
+
+        #notification {
+            transform: translateY(-20px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        #notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .spinner {
+            border: 3px solid #f3f4f6;
+            border-top: 3px solid #3b82f6;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header id="header" class="fixed top-0 w-full bg-white shadow-md z-50 transition-transform duration-300">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-xl font-bold text-gray-800">
+                    Dr. Nama Dosen, M.Kom
+                </div>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="../../index.html" class="text-gray-700 hover:text-blue-600 transition">Profil</a>
+                    <a href="../../penelitian.html" class="text-gray-700 hover:text-blue-600 transition">Penelitian</a>
+                    <a href="../../kegiatan.html" class="text-gray-700 hover:text-blue-600 transition">Kegiatan</a>
+                    <a href="../../perkuliahan.html" class="text-blue-600 font-semibold">Perkuliahan</a>
+                </div>
+                
+                <button id="hamburger" class="md:hidden focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <div id="mobile-menu" class="md:hidden">
+                <div class="pt-4 pb-2 space-y-2">
+                    <a href="../../index.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">Profil</a>
+                    <a href="../../penelitian.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">Penelitian</a>
+                    <a href="../../kegiatan.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">Kegiatan</a>
+                    <a href="../../perkuliahan.html" class="block px-4 py-2 text-blue-600 bg-blue-50 rounded font-semibold">Perkuliahan</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Notification -->
+    <div id="notification" class="fixed top-24 right-4 z-40 max-w-sm"></div>
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-12 min-h-screen">
+        <div class="container mx-auto px-4 max-w-2xl">
+            <!-- Breadcrumb -->
+            <nav class="mb-6 text-sm">
+                <ol class="flex items-center space-x-2 text-gray-600">
+                    <li><a href="../../perkuliahan.html" class="hover:text-blue-600">Perkuliahan</a></li>
+                    <li><span class="mx-2">/</span></li>
+                    <li><a href="index.html" class="hover:text-blue-600">Pemrograman Web</a></li>
+                    <li><span class="mx-2">/</span></li>
+                    <li class="text-gray-800 font-semibold">Kirim Tugas</li>
+                </ol>
+            </nav>
+
+            <!-- Page Header -->
+            <div class="mb-8">
+                <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-2">Kirim Tugas</h1>
+                <p class="text-gray-600">Pemrograman Web - Semester Genap 2024/2025</p>
+            </div>
+
+            <!-- Form Card -->
+            <div class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                <form id="assignmentForm" class="space-y-6">
+                    <!-- Nama Mahasiswa -->
+                    <div>
+                        <label for="studentName" class="block text-sm font-semibold text-gray-700 mb-2">
+                            Nama Lengkap <span class="text-red-500">*</span>
+                        </label>
+                        <input type="text" 
+                               id="studentName" 
+                               name="studentName"
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
+                               placeholder="Masukkan nama lengkap"
+                               required>
+                    </div>
+
+                    <!-- NIM -->
+                    <div>
+                        <label for="nim" class="block text-sm font-semibold text-gray-700 mb-2">
+                            NIM <span class="text-red-500">*</span>
+                        </label>
+                        <input type="text" 
+                               id="nim" 
+                               name="nim"
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
+                               placeholder="Contoh: 11223344"
+                               pattern="[0-9]+"
+                               required>
+                    </div>
+
+                    <!-- Kelas -->
+                    <div>
+                        <label for="class" class="block text-sm font-semibold text-gray-700 mb-2">
+                            Kelas <span class="text-red-500">*</span>
+                        </label>
+                        <select id="class" 
+                                name="class"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
+                                required>
+                            <option value="">Pilih Kelas</option>
+                            <option value="A">Kelas A</option>
+                            <option value="B">Kelas B</option>
+                        </select>
+                    </div>
+
+                    <!-- Judul Tugas -->
+                    <div>
+                        <label for="assignmentTitle" class="block text-sm font-semibold text-gray-700 mb-2">
+                            Judul Tugas <span class="text-red-500">*</span>
+                        </label>
+                        <select id="assignmentTitle" 
+                                name="assignmentTitle"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
+                                required>
+                            <option value="">Pilih Tugas</option>
+                            <option value="Tugas 1 - Membuat Landing Page">Tugas 1 - Membuat Landing Page</option>
+                            <option value="Tugas 2 - JavaScript Calculator">Tugas 2 - JavaScript Calculator</option>
+                            <option value="Tugas 3 - Web App with API">Tugas 3 - Web App with API</option>
+                        </select>
+                    </div>
+
+                    <!-- Keterangan -->
+                    <div>
+                        <label for="description" class="block text-sm font-semibold text-gray-700 mb-2">
+                            Keterangan (Opsional)
+                        </label>
+                        <textarea id="description" 
+                                  name="description"
+                                  rows="4"
+                                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition resize-none"
+                                  placeholder="Tambahkan catatan atau keterangan tugas Anda..."></textarea>
+                    </div>
+
+                    <!-- File Upload -->
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">
+                            Upload File Tugas <span class="text-red-500">*</span>
+                        </label>
+                        <div id="fileUploadArea" 
+                             class="file-upload-area rounded-lg p-8 text-center cursor-pointer">
+                            <input type="file" 
+                                   id="fileInput" 
+                                   name="file"
+                                   class="hidden"
+                                   accept=".pdf,.doc,.docx,.zip,.rar"
+                                   required>
+                            <div id="uploadPrompt">
+                                <svg class="mx-auto h-12 w-12 text-gray-400 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                                </svg>
+                                <p class="text-gray-600 font-medium mb-1">Klik untuk upload atau drag & drop</p>
+                                <p class="text-sm text-gray-500">PDF, DOC, DOCX, ZIP, RAR (Max 10MB)</p>
+                            </div>
+                            <div id="fileInfo" class="hidden">
+                                <svg class="mx-auto h-12 w-12 text-green-500 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <p id="fileName" class="text-gray-700 font-medium mb-1"></p>
+                                <p id="fileSize" class="text-sm text-gray-500 mb-3"></p>
+                                <button type="button" 
+                                        id="changeFile"
+                                        class="text-blue-600 hover:text-blue-700 text-sm font-medium">
+                                    Ganti File
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="pt-4">
+                        <button type="submit" 
+                                id="submitBtn"
+                                class="w-full bg-blue-600 text-white font-semibold py-4 px-6 rounded-lg hover:bg-blue-700 transition duration-200 shadow-md hover:shadow-lg flex items-center justify-center">
+                            <span id="btnText">Kirim Tugas</span>
+                            <div id="btnSpinner" class="spinner ml-3 hidden"></div>
+                        </button>
+                    </div>
+
+                    <p class="text-sm text-gray-500 text-center">
+                        Pastikan semua data sudah benar sebelum mengirim
+                    </p>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-gray-400">&copy; 2024 Dr. Nama Dosen. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll behavior
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        let lastScroll = 0;
+        const header = document.getElementById('header');
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll <= 0) {
+                header.classList.remove('header-hidden');
+                header.classList.add('header-visible');
+                return;
+            }
+            
+            if (currentScroll > lastScroll && currentScroll > 80) {
+                header.classList.add('header-hidden');
+                header.classList.remove('header-visible');
+            } else {
+                header.classList.remove('header-hidden');
+                header.classList.add('header-visible');
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // File upload functionality
+        const fileUploadArea = document.getElementById('fileUploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const uploadPrompt = document.getElementById('uploadPrompt');
+        const fileInfo = document.getElementById('fileInfo');
+        const fileName = document.getElementById('fileName');
+        const fileSize = document.getElementById('fileSize');
+        const changeFileBtn = document.getElementById('changeFile');
+
+        fileUploadArea.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        fileUploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            fileUploadArea.classList.add('drag-over');
+        });
+
+        fileUploadArea.addEventListener('dragleave', () => {
+            fileUploadArea.classList.remove('drag-over');
+        });
+
+        fileUploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            fileUploadArea.classList.remove('drag-over');
+            
+            if (e.dataTransfer.files.length) {
+                fileInput.files = e.dataTransfer.files;
+                displayFileInfo(e.dataTransfer.files[0]);
+            }
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length) {
+                displayFileInfo(e.target.files[0]);
+            }
+        });
+
+        changeFileBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            fileInput.value = '';
+            uploadPrompt.classList.remove('hidden');
+            fileInfo.classList.add('hidden');
+        });
+
+        function displayFileInfo(file) {
+            const sizeInMB = (file.size / (1024 * 1024)).toFixed(2);
+            
+            if (file.size > 10 * 1024 * 1024) {
+                showNotification('File terlalu besar! Maksimal 10MB', 'error');
+                return;
+            }
+            
+            fileName.textContent = file.name;
+            fileSize.textContent = `Ukuran: ${sizeInMB} MB`;
+            uploadPrompt.classList.add('hidden');
+            fileInfo.classList.remove('hidden');
+        }
+
+        // Form submission
+        const form = document.getElementById('assignmentForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const btnText = document.getElementById('btnText');
+        const btnSpinner = document.getElementById('btnSpinner');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Validate file
+            if (!fileInput.files.length) {
+                showNotification('Harap upload file tugas!', 'error');
+                return;
+            }
+
+            // Show loading
+            submitBtn.disabled = true;
+            btnText.textContent = 'Mengirim...';
+            btnSpinner.classList.remove('hidden');
+
+            // Simulate upload (replace with actual Google Apps Script URL)
+            try {
+                // Get form data
+                const formData = new FormData(form);
+                
+                // In production, replace this with actual fetch to Google Apps Script
+                // const response = await fetch('YOUR_GOOGLE_APPS_SCRIPT_URL', {
+                //     method: 'POST',
+                //     body: formData
+                // });
+                
+                // Simulate API call
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                
+                // Success
+                showNotification('Tugas berhasil dikirim!', 'success');
+                form.reset();
+                fileInput.value = '';
+                uploadPrompt.classList.remove('hidden');
+                fileInfo.classList.add('hidden');
+                
+            } catch (error) {
+                showNotification('Gagal mengirim tugas. Silakan coba lagi.', 'error');
+            } finally {
+                submitBtn.disabled = false;
+                btnText.textContent = 'Kirim Tugas';
+                btnSpinner.classList.add('hidden');
+            }
+        });
+
+        // Notification system
+        function showNotification(message, type) {
+            const notification = document.getElementById('notification');
+            const bgColor = type === 'success' ? 'bg-green-500' : 'bg-red-500';
+            
+            notification.innerHTML = `
+                <div class="${bgColor} text-white px-6 py-4 rounded-lg shadow-lg">
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            ${type === 'success' 
+                                ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>'
+                                : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>'
+                            }
+                        </svg>
+                        <span class="font-medium">${message}</span>
+                    </div>
+                </div>
+            `;
+            
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 4000);
+        }
+    </script>
+</body>
+</html>
