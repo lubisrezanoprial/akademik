@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas - Dr. [Nama Anda]</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">Dr. [Nama Anda]</div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="profil.html">Profil</a></li>
+                <li><a href="penelitian.html">Penelitian</a></li>
+                <li><a href="pengajaran.html">Pengajaran</a></li>
+                <li><a href="tugas.html" class="active">Tugas</a></li>
+                <li><a href="kontak.html">Kontak</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Tugas & Pengumpulan</h1>
+            <p>Informasi tugas, deadline, dan sistem pengumpulan tugas</p>
+        </div>
+    </section>
+
+    <!-- Assignment Content -->
+    <section class="content-section">
+        <div class="container">
+            
+            <!-- Cara Pengumpulan Tugas -->
+            <div class="assignment-section info-box">
+                <h2>📋 Cara Pengumpulan Tugas</h2>
+                <p>Mahasiswa dapat mengumpulkan tugas melalui <strong>Google Form</strong> yang telah disediakan 
+                untuk setiap mata kuliah. Pastikan untuk:</p>
+                <ol>
+                    <li>Menggunakan email universitas (@[domain-universitas].ac.id)</li>
+                    <li>Menamai file dengan format: <strong>NIM_Nama_Tugas[X].pdf/zip</strong></li>
+                    <li>Mengumpulkan sebelum batas waktu yang ditentukan</li>
+                    <li>File maksimal 10MB (gunakan link Google Drive jika file lebih besar)</li>
+                </ol>
+            </div>
+
+            <!-- Tugas Mata Kuliah 1 -->
+            <div class="assignment-section">
+                <h2>[Nama Mata Kuliah 1]</h2>
+                
+                <!-- Tugas Aktif/Upcoming -->
+                <div class="assignment-card active">
+                    <div class="assignment-header">
+                        <h3>Tugas 3: [Judul Tugas]</h3>
+                        <span class="status-badge active">Aktif</span>
+                    </div>
+                    <div class="assignment-details">
+                        <p><strong>📅 Deadline:</strong> <span class="deadline">10 Desember 2024, 23:59 WIB</span></p>
+                        <p><strong>📝 Deskripsi:</strong></p>
+                        <p>
+                            [Deskripsi lengkap tugas, apa yang harus dikerjakan, format yang diminta, 
+                            kriteria penilaian, dll.]
+                        </p>
+                        <p><strong>📎 File Pendukung:</strong></p>
+                        <ul>
+                            <li><a href="#">📄 Dokumen Soal (PDF)</a></li>
+                            <li><a href="#">💾 Template/Dataset (ZIP)</a></li>
+                            <li><a href="#">📖 Rubrik Penilaian (PDF)</a></li>
+                        </ul>
+                    </div>
+                    <div class="submission-box">
+                        <h4>📤 Kumpulkan Tugas</h4>
+                        <p>Klik tombol di bawah untuk mengisi form pengumpulan tugas:</p>
+                        <a href="https://forms.gle/[LINK-GOOGLE-FORM-ANDA]" 
+                           class="btn btn-primary" 
+                           target="_blank">
+                            Kumpulkan Tugas 3
+                        </a>
+                        <p class="note">*Pastikan Anda sudah login dengan email universitas</p>
+                    </div>
+                </div>
+
+                <!-- Tugas Sebelumnya -->
+                <div class="assignment-card closed">
+                    <div class="assignment-header">
+                        <h3>Tugas 2: [Judul Tugas]</h3>
+                        <span class="status-badge closed">Ditutup</span>
+                    </div>
+                    <div class="assignment-details">
+                        <p><strong>📅 Deadline:</strong> 25 November 2024, 23:59 WIB</p>
+                        <p><strong>📝 Deskripsi:</strong> [Deskripsi singkat tugas...]</p>
+                        <p><strong>📎 File:</strong> <a href="#">📄 Soal (PDF)</a></p>
+                    </div>
+                    <div class="submission-box">
+                        <p class="closed-message">⏰ Pengumpulan tugas telah ditutup</p>
+                    </div>
+                </div>
+
+                <div class="assignment-card closed">
+                    <div class="assignment-header">
+                        <h3>Tugas 1: [Judul Tugas]</h3>
+                        <span class="status-badge closed">Ditutup</span>
+                    </div>
+                    <div class="assignment-details">
+                        <p><strong>📅 Deadline:</strong> 10 November 2024, 23:59 WIB</p>
+                        <p><strong>📝 Deskripsi:</strong> [Deskripsi singkat tugas...]</p>
+                        <p><strong>📎 File:</strong> <a href="#">📄 Soal (PDF)</a></p>
+                    </div>
+                    <div class="submission-box">
+                        <p class="closed-message">⏰ Pengumpulan tugas telah ditutup</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tugas Mata Kuliah 2 -->
+            <div class="assignment-section">
+                <h2>[Nama Mata Kuliah 2]</h2>
+                
+                <div class="assignment-card upcoming">
+                    <div class="assignment-header">
+                        <h3>Tugas 2: [Judul Tugas]</h3>
+                        <span class="status-badge upcoming">Segera Dibuka</span>
+                    </div>
+                    <div class="assignment-details">
+                        <p><strong>📅 Dibuka:</strong> 5 Desember 2024</p>
+                        <p><strong>📅 Deadline:</strong> 15 Desember 2024, 23:59 WIB</p>
+                        <p><strong>📝 Deskripsi:</strong> [Deskripsi singkat tugas yang akan datang...]</p>
+                    </div>
+                    <div class="submission-box">
+                        <p class="upcoming-message">🕐 Form pengumpulan akan tersedia mulai 5 Desember 2024</p>
+                    </div>
+                </div>
+
+                <div class="assignment-card active">
+                    <div class="assignment-header">
+                        <h3>Tugas 1: [Judul Tugas]</h3>
+                        <span class="status-badge active">Aktif</span>
+                    </div>
+                    <div class="assignment-details">
+                        <p><strong>📅 Deadline:</strong> <span class="deadline">8 Desember 2024, 23:59 WIB</span></p>
+                        <p><strong>📝 Deskripsi:</strong></p>
+                        <p>[Deskripsi lengkap tugas...]</p>
+                        <p><strong>📎 File Pendukung:</strong></p>
+                        <ul>
+                            <li><a href="#">📄 Soal (PDF)</a></li>
+                        </ul>
+                    </div>
+                    <div class="submission-box">
+                        <h4>📤 Kumpulkan Tugas</h4>
+                        <a href="https://forms.gle/[LINK-GOOGLE-FORM-ANDA]" 
+                           class="btn btn-primary" 
+                           target="_blank">
+                            Kumpulkan Tugas 1
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tugas Mata Kuliah 3 -->
+            <div class="assignment-section">
+                <h2>[Nama Mata Kuliah 3]</h2>
+                
+                <div class="assignment-card active">
+                    <div class="assignment-header">
+                        <h3>Proyek Akhir: [Judul Proyek]</h3>
+                        <span class="status-badge active">Aktif</span>
+                    </div>
+                    <div class="assignment-details">
+                        <p><strong>📅 Deadline:</strong> <span class="deadline">20 Desember 2024, 23:59 WIB</span></p>
+                        <p><strong>📝 Deskripsi:</strong></p>
+                        <p>
+                            Proyek akhir berupa [deskripsi proyek]. Mahasiswa dapat bekerja dalam kelompok 
+                            (maksimal 3 orang) atau individu.
+                        </p>
+                        <p><strong>📋 Deliverables:</strong></p>
+                        <ul>
+                            <li>Laporan (PDF)</li>
+                            <li>Source Code (ZIP atau link GitHub)</li>
+                            <li>Presentasi (PPT/PDF)</li>
+                            <li>Video Demo (Link YouTube/Drive)</li>
+                        </ul>
+                        <p><strong>📎 File Pendukung:</strong></p>
+                        <ul>
+                            <li><a href="#">📄 Panduan Proyek (PDF)</a></li>
+                            <li><a href="#">📊 Template Laporan (DOCX)</a></li>
+                            <li><a href="#">📖 Rubrik Penilaian (PDF)</a></li>
+                        </ul>
+                    </div>
+                    <div class="submission-box">
+                        <h4>📤 Kumpulkan Proyek Akhir</h4>
+                        <a href="https://forms.gle/[LINK-GOOGLE-FORM-ANDA]" 
+                           class="btn btn-primary" 
+                           target="_blank">
+                            Kumpulkan Proyek
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Informasi Penting -->
+            <div class="assignment-section info-box warning">
+                <h2>⚠️ Informasi Penting</h2>
+                <ul>
+                    <li><strong>Keterlambatan:</strong> Pengumpulan lewat deadline akan dikenakan pengurangan nilai 
+                    10% per hari (maksimal 3 hari). Setelah itu tugas tidak akan diterima.</li>
+                    <li><strong>Plagiarisme:</strong> Tugas yang terbukti plagiat akan mendapat nilai 0 dan 
+                    akan diproses sesuai aturan akademik universitas.</li>
+                    <li><strong>Format File:</strong> Pastikan file yang dikumpulkan dalam format yang diminta 
+                    (PDF, ZIP, dll) dan dapat dibuka dengan baik.</li>
+                    <li><strong>Konfirmasi:</strong> Setelah mengumpulkan, Anda akan menerima email konfirmasi. 
+                    Jika tidak menerima dalam 5 menit, silakan hubungi dosen.</li>
+                </ul>
+            </div>
+
+            <!-- FAQ -->
+            <div class="assignment-section">
+                <h2>❓ Pertanyaan yang Sering Diajukan (FAQ)</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <h4>Q: Bagaimana jika file tugas saya lebih dari 10MB?</h4>
+                        <p>A: Upload file ke Google Drive Anda, atur akses menjadi "Anyone with the link can view", 
+                        lalu submit link tersebut di form pengumpulan.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>Q: Apakah bisa mengumpulkan tugas lebih dari sekali?</h4>
+                        <p>A: Ya, Anda dapat mengumpulkan ulang sebelum deadline. Submission terakhir yang akan dinilai.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>Q: Saya tidak bisa akses Google Form, bagaimana?</h4>
+                        <p>A: Pastikan Anda login dengan email universitas. Jika masih bermasalah, hubungi saya via email.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>Q: Apakah ada perpanjangan deadline?</h4>
+                        <p>A: Perpanjangan hanya diberikan untuk kondisi darurat dengan bukti yang valid. 
+                        Hubungi saya maksimal 2 hari sebelum deadline.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Dr. [Nama Anda]. All rights reserved.</p>
+            <p>Website Akademik - [Nama Universitas]</p>
+        </div>
+    </footer>
+</body>
+</html>
